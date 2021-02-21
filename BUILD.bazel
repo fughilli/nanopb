@@ -19,3 +19,8 @@ cc_library(
     ],
     visibility = ["//visibility:public"],
 )
+
+sh_binary(
+    name = "nanopb_shim",
+    srcs = ["nanopb_shim.sh"],
+)
