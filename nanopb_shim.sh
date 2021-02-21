@@ -16,6 +16,8 @@ out_source=$4
 output=$($compile_command --strip-path \
   --library-include-format='#include "%s"' --extension=".nanopb" $in_proto -I. 2>&1)
 
+echo "Current directory: $(pwd)"
+
 intermediate_header=$(echo $output |
   sed -n 's/^Writing\ to\ \(.*\)\ and.*$/\1/p')
 intermediate_source=$(echo $output |
