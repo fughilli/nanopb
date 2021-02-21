@@ -6,10 +6,14 @@ def nanopb_library(name, srcs = []):
         name = name + "_nanopb_gen",
         srcs = srcs,
         outs = [name + ".nanopb.h", name + ".nanopb.c"],
-        cmd = ("$(location //:nanopb_shim) " +
-               "$(location //generator:nanopb_generator) $(SRCS) " +
-               "$(OUTS)"),
-        tools = ["//generator:nanopb_generator", "//:nanopb_shim"],
+        cmd = ("$(location @com_github_nanopb_nanopb//:nanopb_shim) " +
+               "$(location " +
+               "@com_github_nanopb_nanopb//generator:nanopb_generator) " +
+               "$(SRCS) $(OUTS)"),
+        tools = [
+            "@com_github_nanopb_nanopb//generator:nanopb_generator",
+            "@com_github_nanopb_nanopb//:nanopb_shim",
+        ],
     )
 
     native.cc_library(
@@ -17,7 +21,7 @@ def nanopb_library(name, srcs = []):
         srcs = [name + ".nanopb.c"],
         hdrs = [name + ".nanopb.h"],
         deps = [
-            "//:nanopb",
+            "@com_github_nanopb_nanopb//:nanopb",
         ],
         copts = [
             "-isystemnanopb",
