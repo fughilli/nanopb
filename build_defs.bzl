@@ -6,7 +6,7 @@ def nanopb_library(name, srcs = []):
         name = name + "_nanopb_gen",
         srcs = srcs,
         outs = [name + ".nanopb.h", name + ".nanopb.c"],
-        cmd = ("$(location :nanopb_shim) " +
+        cmd = ("$(location //:nanopb_shim) " +
                "$(location //generator:nanopb_generator) $(SRCS) " +
                "$(OUTS)"),
         tools = ["//generator:nanopb_generator", "//:nanopb_shim"],
