@@ -7,10 +7,10 @@ genrule(
     cmd = "cat $(SRCS) > $(OUTS)",
 )
 
-#py_library(
-#    name = "nanopb_pb2",
-#    srcs = ["proto/nanopb_pb2.py"],
-#)
+py_library(
+    name = "nanopb_pb2",
+    srcs = ["proto/nanopb_pb2.py"],
+)
 
 py_library(
     name = "_utils",
@@ -22,6 +22,6 @@ py_binary(
     srcs = ["nanopb_generator.py"],
     deps = [
         ":_utils",
-#        ":nanopb_pb2",
+        ":nanopb_pb2",
     ],
 )
